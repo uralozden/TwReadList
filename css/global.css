@@ -186,7 +186,6 @@ h4.fav_caption span{
 	margin-top: 40px;
 	text-align: left;
 	margin-left: 20px;
-	
 }
 section#fav .innershadow{
 	background: url(../images/inner_shadow.png) repeat-x;
@@ -197,7 +196,6 @@ section#fav .innershadow{
 	left: 0;
 	z-index: 4444;
 }
-
 footer{
 	border-top: 1px solid #D2D2D2;
 	margin-top: 50px;
