@@ -1,0 +1,222 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+body{
+	background:#ebebeb;
+}
+
+h1{
+	font-size: 20px;
+	color: #525252;
+	font-family: cond,arial,helvetica;
+	margin:10px 0 10px 20px;
+}
+
+
+@font-face {
+	font-family: 'cond';
+	src: url('../fonts/ProximaNova-Regular.eot');
+	src: local('☺'),  url('../fonts/ProximaNova-Regular.ttf') format('truetype'), url('../fonts/ProximaNova-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+h2{
+	font-size:25px;
+	font-family: cond,arial,helvetica;
+	color: #afafaf;
+	font-weight: lighter;
+}
+h3{
+	color: #afafaf;
+	font-family: cond,arial,helvetica;
+	margin:10px 0;
+	font-size: 18px;
+	font-weight: lighter;
+	margin-bottom: 20px;
+
+}
+
+h4{
+	color: #afafaf;
+	font-family: cond,arial,helvetica;
+	margin:10px 0;
+	font-size: 25px;
+	font-weight: lighter;
+}
+p,span{
+	font-family: cond;
+	line-height: 1.4em;
+	color: #afafaf;
+	font-size: 15px;
+}
+a{
+	text-decoration: none;
+	font-size: 15px;
+ 	font-family: cond;
+ 	color: #afafaf;
+}
+
+.clear{
+	clear: both;
+}
+.left{
+	float: left;
+	display: inline;
+}
+.right{
+	float: right;
+	display: inline;
+}
+
+#container{
+	width: 960px;
+	margin:0 auto;
+}
+
+header{
+	text-align: center;
+	border-bottom: 1px solid #D2D2D2;
+	padding-bottom:10px;
+	margin-bottom: 60px;
+}
+
+header .logo{
+	text-align: center;
+	width:600px;
+	margin: 0 auto;
+}
+
+header .logo img{
+	padding:50px 0 30px 0;
+}
+
+section{
+	text-align: center;
+}
+
+section#user{
+	width: 600px;
+	margin: 0 auto;
+}
+section#user h4 span{
+	color: #ea7d7d;
+	font-size: 25px;
+}
+section#user p{
+	font-size: 18px;
+}
+section#user form{
+	width: 	400px;
+	margin: 30px auto 30px;
+
+}
+section#user form input{
+	width: 238px;
+	height: 24px;
+	border:1px solid #d0cece;
+	background: #fff;
+	padding:5px;
+	float: left;
+	display: block;
+	color: #afafaf;
+}
+section#user form a{
+	background: #00a0d1;
+	text-align: center;
+	font-size:15px;
+	color: #fff; 
+	border:1px solid #077597;
+	width: 104px;
+	height: 24px;
+	padding:5px;
+	float: left;
+	display: block;
+}
+section#user form a:hover{
+	background: #1b88a9;
+}
+section#fav{
+	position: relative;
+	display: block;
+}
+section#fav .ok{
+	width: 280px;
+	height: 60px;
+	margin:0 auto;
+}
+section#fav .ok .tik{
+	float: left;
+	display: block;
+	background: url(../images/tik.jpg) no-repeat;
+	width: 88px;
+	height: 71px;
+	margin-right: 20px;
+	margin-top: -20px;
+}
+h4.fav_caption{
+	border-bottom: 1px solid #D2D2D2;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+}
+h4.fav_caption span{
+	font-size: 25px;
+	font-weight: lighter;
+}
+
+.favbox{
+	width: 600px;
+	margin: 30px auto 30px;
+}
+
+.favbox .avatar{
+	float: left;
+	display: block;
+	background: #fff;
+	-webkit-box-shadow:  1px 1px 10px 3px #999999;
+    box-shadow:  1px 1px 10px 3px #999999;
+    padding: 5px 5px 1px 5px;
+}
+.favbox p{
+	float: left;
+	display: block;
+	width: 460px;
+	margin-top: 40px;
+	text-align: left;
+	margin-left: 20px;
+	
+}
+section#fav .innershadow{
+	background: url(../images/inner_shadow.png) repeat-x;
+	position: absolute;
+	width: 960px;
+	height: 243px;
+	bottom: -50px;
+	left: 0;
+	z-index: 4444;
+}
+
+footer{
+	border-top: 1px solid #D2D2D2;
+	margin-top: 50px;
+	padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
