@@ -5,42 +5,77 @@ This class used for main functions of this application.
 */
 class Api extends CI_Controller{
 
-	private $favorites_link = array();
+	private $favorite_links = array();
+	private $favorite_tweets = array();
+	private $consumer_key = "12580-e4b58e9df02a1a4aabed660a";
+	private $request_token = "";
+	private $access_token = "";
+	private $username = "";
 
 	//constructor
 	public function __construct(){
 		parent::__construct();
 	}
 
-	//function for authenticating with Pocket.
-	public function pocketAuth(){
+	public function index(){
+		$this->load->view('welcome_v');
+	}
 
+	public function app(){
+		$this->load->view('user_v');
+	}
+
+
+	// //function for authenticating with Pocket.
+	// public function pocketAuth(){
+
+	// }
+
+	//form calls this function.
+	public function processform(){
+		$twitter_username = $this->input->post('twitter_username');
+		$this->getTwUserFavs($twitter_username); //this fills the $favorite_links array.
+		if(count($this->favorite_links) < 1){
+			$data = array('ok' => '0');
+		}else{
+			foreach ($this->favorite_links as $fl) {
+				$this->addFavToPocket($fl);
+			}
+			$data = array('ok' => '1');
+		}
+		$this->load->view('result_v', $data);
 	}
 
 	//function for getting favorites of Twitter users.
-	public function getTwUserFavs($tw_username){
+	public function getTwUserFavs($tw_username = ""){
+		if($tw_username == ""){
+			redirect('api/app');
+		}
 		$u = "https://api.twitter.com/1/favorites.json?count=200&screen_name=$tw_username";
 		$data = json_decode($this->curl->simple_get($u));
-		//print_r($this->curl->simple_get($u));
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
 
 		//For now, we only get the latest 200 favs.
 		$i = 0;
 		foreach ($data as $d) {
 			$url = $this->getUrlFromTweet($d->text);
 			if($url){
-				$this->favorites_link[$i] = $url;
+				$this->favorite_links[$i] = $url;
+				// $this->favorite_tweets[$i] = $d->text; //for future updates
 				$i++;
 				//echo "i: ".$i."<br>";
 			}
 		}
-		echo "Fetched and printed!<br>";
-		echo count($this->favorites_link)."<br>";
-		$this->printArray();
+		// echo "Fetched and printed!<br>";
+		// echo count($this->favorite_links)."<br>";
+		// $this->printArray();
 	}
 
-	//function for printing favorites_link array -- debug
+	//function for printing favorite_links array -- debug
 	function printArray(){
-		foreach ($this->favorites_link as $fl) {
+		foreach ($this->favorite_links as $fl) {
 			echo $fl." <br>";
 		}
 	}
@@ -61,86 +96,66 @@ class Api extends CI_Controller{
 	}
 
 	//function for transferring Tw favs to Pocket.
-	public function addFavToPocket(){
-
+	public function addFavToPocket($tweet_url){
+		$request_url = "https://getpocket.com/v3/add";
+		$ut = $this->session->userdata('access_token');
+		$this->curl->simple_post($request_url, 
+			array(
+				'url'=> $tweet_url, 
+				'consumer_key' => $this->consumer_key, 
+				'access_token' => $ut
+			)
+		);
 	}
 
-
-
-	###other appp
-	//function for checking all the websites
-	public function checkAllWebsites(){
-		$result = $this->website->getAllWebsites();
-		foreach ($result as $r) {
-			$website = $r->url;
-			$owner_id = $r->owner_id;
-			$premium = $this->user->getPremiumType($owner_id);
-			if($this->curl->simple_post('api/checkwebsitehealth', array('u'=> $website)) == "200"){
-				//site is accessible do nothing, save logs
-			}else{
-				//not accessible, send notifications and save logs
-				if($premium != 0){
-					//send email and sms
-				}else{
-					//send email
-				}
-
-			}
-		}
-	}
-
-	//function for adding new users
-	public function signup(){
-		$email = $this->input->post('email');
-		if($this->user->isEmailAlreadyRegistered($email) != 0){
-			return;
-		}
-		$password = $this->input->post('password');
-		if($this->user->addNewUser($email, $password) != 0){
-			echo 1;
+	//function for connecting the app to Pocket.
+	function connect(){
+		if($this->session->userdata('username') != ""){
+			redirect('/api/app');
 		}else{
-			echo 0;
+			$request_url = "https://getpocket.com/v3/oauth/request";
+			$redirect_uri = site_url()."api/user";
+			header("Content-Type: application/json; charset=UTF8");
+			$this->request_token = $this->curl->simple_post($request_url, array('consumer_key'=> $this->consumer_key, 'redirect_uri' => $redirect_uri));
+			//after getting request token, redirect user to Pocket.
+
+			$t = str_replace(array('code='), array(''), $this->request_token);
+
+			$pocket_url = "https://getpocket.com/auth/authorize?request_token=$t&redirect_uri=$redirect_uri?code=$t";
+			redirect($pocket_url);
 		}
 	}
 
+	//this function gets access_token and username.
+	function user(){
+		$code = $this->input->get('code');
+		$auth_url = "https://getpocket.com/v3/oauth/authorize";
+		$result = $this->curl->simple_post($auth_url, array('consumer_key'=> $this->consumer_key, 'code' => $code));
 
+		$len1 = strlen("access_token=");
+		$pos1 = strpos($result, "&");
+		$this->access_token = substr($result, $len1, $pos1-$len1);
+		$len2 = strlen("username=");
+		$this->username = substr($result, $pos1+$len2+1);
 
-	public function index(){
-		echo $this->curl->simple_post('api/signup', array('email' => "hi@tounat.com", 'password' => "1234"));
-		// if($this->curl->simple_post('api/checkwebsitehealth', array('u'=>'http://tounat.cm')) == "200"){
-		// 	echo "tak!";
-		// }else{
-		// 	echo "nottak";
-		// }
-	}
+		if($this->username != ""){
+			//start a session
+			$data = array(
+               'username'  => $this->username,
+               'access_token' => $this->access_token
+            );
 
-	public function twitterfav($user){
-		//https://api.twitter.com/1/favorites.json?count=5&screen_name=episod
-		$u = "https://api.twitter.com/1/favorites.json?count=5&screen_name=$user";
-		echo "<pre>";
-		echo $this->curl->simple_get($u);
-		echo "</pre>";
-	}
-
-	public function checkwebsitehealth(){
-		$url = $this->input->post('u'); //a website address has to be posted.
-		$agent = "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)";$ch=curl_init();
-		curl_setopt ($ch, CURLOPT_URL,$url );
-		curl_setopt($ch, CURLOPT_USERAGENT, $agent);
-		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt ($ch,CURLOPT_VERBOSE,false);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-		curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($ch,CURLOPT_SSLVERSION,3);
-		curl_setopt($ch,CURLOPT_SSL_VERIFYHOST, FALSE);
-		$page=curl_exec($ch);
-		//echo curl_error($ch);
-		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		curl_close($ch);
-		if($httpcode == 200){
-			echo "200"; //site is accessible.
+			$this->session->set_userdata($data);
+			redirect('/api/app');
 		}else{
-			return FALSE;
+			redirect('/');
 		}
+		// $data = array('username' => $this->username);
+		// $this->load->view('user_v', $data);
+	}
+
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('/');
 	}
 }

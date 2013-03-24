@@ -204,6 +204,11 @@ footer{
 	padding-top: 20px;
 }
 
+footer .left{
+	float: left;
+	display: block;
+	width: 400px;
+}
 
 
 
