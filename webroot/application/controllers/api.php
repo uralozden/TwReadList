@@ -39,7 +39,7 @@ class Api extends CI_Controller{
 			$data = array('ok' => '0');
 		}else{
 			foreach ($this->favorite_links as $fl) {
-				$this->addFavToPocket($fl);
+				// $this->addFavToPocket($fl);
 			}
 			$data = array('ok' => '1');
 		}
@@ -101,7 +101,7 @@ class Api extends CI_Controller{
 
 	//function for transferring Tw favs to Pocket.
 	public function addFavToPocket($tweet_url){
-		$request_url = "https://getpocket.com/v3/add";
+		/*$request_url = "https://getpocket.com/v3/add";
 		$ut = $this->session->userdata('access_token');
 		$this->curl->simple_post($request_url, 
 			array(
@@ -109,7 +109,7 @@ class Api extends CI_Controller{
 				'consumer_key' => $this->consumer_key, 
 				'access_token' => $ut
 			)
-		);
+		);*/
 	}
 
 	//function for connecting the app to Pocket.
