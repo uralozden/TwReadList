@@ -1,0 +1,14 @@
+Options +FollowSymLinks
+Options +Indexes
+RewriteEngine On
+
+RewriteBase /TwReadList/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+RewriteCond %{HTTP_HOST} ^www.sendfiles2.me [NC]
+RewriteRule ^(.*)$ http://sendfiles2.me/$1 [L,R=301]
