@@ -12,8 +12,6 @@ h1{
 	font-family: cond,arial,helvetica;
 	margin:10px 0 10px 20px;
 }
-
-
 @font-face {
 	font-family: 'cond';
 	src: url('../fonts/ProximaNova-Regular.eot');
@@ -21,7 +19,6 @@ h1{
 	font-weight: normal;
 	font-style: normal;
 }
-
 
 h2{
 	font-size:25px;
