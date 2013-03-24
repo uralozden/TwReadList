@@ -20,16 +20,10 @@ class Api extends CI_Controller{
 	public function index(){
 		$this->load->view('welcome_v');
 	}
-
+	
 	public function app(){
 		$this->load->view('user_v');
 	}
-
-
-	// //function for authenticating with Pocket.
-	// public function pocketAuth(){
-
-	// }
 
 	//form calls this function.
 	public function processform(){
@@ -39,7 +33,7 @@ class Api extends CI_Controller{
 			$data = array('ok' => '0');
 		}else{
 			foreach ($this->favorite_links as $fl) {
-				// $this->addFavToPocket($fl);
+				$this->addFavToPocket($fl);
 			}
 			$data = array('ok' => '1');
 		}
@@ -57,9 +51,6 @@ class Api extends CI_Controller{
 		if($data == ""){
 			redirect('api/app');	
 		}
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
 
 		//For now, we only get the latest 200 favs.
 		$i = 0;
@@ -69,12 +60,8 @@ class Api extends CI_Controller{
 				$this->favorite_links[$i] = $url;
 				// $this->favorite_tweets[$i] = $d->text; //for future updates
 				$i++;
-				//echo "i: ".$i."<br>";
 			}
 		}
-		// echo "Fetched and printed!<br>";
-		// echo count($this->favorite_links)."<br>";
-		// $this->printArray();
 	}
 
 	//function for printing favorite_links array -- debug
@@ -101,7 +88,7 @@ class Api extends CI_Controller{
 
 	//function for transferring Tw favs to Pocket.
 	public function addFavToPocket($tweet_url){
-		/*$request_url = "https://getpocket.com/v3/add";
+		$request_url = "https://getpocket.com/v3/add";
 		$ut = $this->session->userdata('access_token');
 		$this->curl->simple_post($request_url, 
 			array(
@@ -109,7 +96,7 @@ class Api extends CI_Controller{
 				'consumer_key' => $this->consumer_key, 
 				'access_token' => $ut
 			)
-		);*/
+		);
 	}
 
 	//function for connecting the app to Pocket.
@@ -154,8 +141,7 @@ class Api extends CI_Controller{
 		}else{
 			redirect('/');
 		}
-		// $data = array('username' => $this->username);
-		// $this->load->view('user_v', $data);
+
 	}
 
 	public function logout(){
