@@ -210,7 +210,18 @@ footer .left{
 	width: 400px;
 }
 
+/*** Minimal Popup ***/
+#minimal_popup{
 
+}
+
+#minimal_popup .button{
+	float: right;
+	display: block;
+	background: #212121;
+	color: #fff;
+	padding:5px 10px;
+}
 
 
 

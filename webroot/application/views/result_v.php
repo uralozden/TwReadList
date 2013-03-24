@@ -15,7 +15,7 @@
 
 			<div class="clear"></div>
 
-<!-- 			<div class="favbox">
+		<!--<div class="favbox">
 				<div class="avatar">
 					<img src="<?php echo site_url(); ?>images/default_user_image.jpg" alt="">
 				</div>

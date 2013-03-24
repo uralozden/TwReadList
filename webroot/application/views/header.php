@@ -10,6 +10,8 @@
 	<meta name="robots" content="all,follow">
 	<link rel="stylesheet" href="<?php echo site_url(); ?>css/reset.css">
 	<link rel="stylesheet" href="<?php echo site_url(); ?>css/global.css">
+	<script type="text/javascript" src="<?php echo site_url(); ?>js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo site_url(); ?>js/main.js"></script>
 
 	<meta property="og:title" content="Twitter Read List"/>
     <meta property="og:type" content="Twitter, Pocket"/>
@@ -37,4 +39,31 @@
 			<a href="<?php echo site_url(); ?>" class="logo">
 				<img src="<?php echo site_url(); ?>images/logo.jpg" width="217px" height="34px" alt="">
 			</a>
+
+			<?php if ($this->session->userdata('username')){ ?>				
+			<div id="minimal_popup">
+				<a href="<?php echo site_url(); ?>api/logout" class="button">Quit</a>
+				
+
+			</div><!--minimal_popup-->
+			<?php } ?>
+			<div class="clear"></div>
 		</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
