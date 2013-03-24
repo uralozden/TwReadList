@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TwReadList</title>
+	<link rel="stylesheet" href="<?php echo site_url(); ?>css/reset.css">
+	<link rel="stylesheet" href="<?php echo site_url(); ?>css/global.css">
+</head>
+<body>
+
+	<div id="container">
+		<header>
+			<a href="#" class="logo">
+				<img src="<?php echo site_url(); ?>images/logo.jpg" width="217px" height="34px" alt="">
+			</a>
+		</header>
+		
+		<section id="fav">
+			
+			<p class="ok">
+				<a href="#" class="tik"></a>
+				Your favorite list is posted pocket read list
+			</p>
+
+			<div class="clear"></div>
+
+			<h4 class="fav_caption">
+				Some of your favorite tweets!
+				<div class="clear"></div>
+			</h4>
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+
+			</div><!--fabox-->
+
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+
+			<div class="favbox">
+				<div class="avatar">
+					<img src="<?php echo site_url(); ?>images/default_user_image.jpg" alt="">
+				</div>
+				<p>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
+				</p>
+			
+			<div class="clear"></div>
+			
+			</div><!--fabox-->
+			
+			<div class="innershadow"></div>
+
+			<div class="clear"></div>
+
+		</section>
+
+		<footer>
+			<a href="http://sendfiles2.me/" target="_blank" class="left">sendfiles2.me</a>
+			<span class="right">copyright &copy; 2013</span>
+		</footer>
+	</div><!--container-->
+	
+</body>
+</html>
