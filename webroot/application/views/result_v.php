@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="<?php echo site_url(); ?>css/reset.css">
 	<link rel="stylesheet" href="<?php echo site_url(); ?>css/global.css">
 
-
 	<meta property="og:title" content="Twitter Read List"/>
     <meta property="og:type" content="Twitter, Pocket"/>
     <meta property="og:url" content="http://twreadlist.co/"/>
@@ -28,17 +27,35 @@
 			</a>
 		</header>
 		
-		<section id="user">
-			<h4>Welcome <span><?php echo $this->session->userdata('username'); ?>!</span></h4>
-			<p>
-				Please enter your Twitter username and we'll get your favorite links on Twitter and put them into your Pocket. Awesome isn’t it?
+		<section id="fav">
+			<?php if($ok == "1"){ ?>
+			<p class="ok">
+				<a href="#" class="tik"></a>
+				You favorite links on Twitter are posted into your Pocket!
 			</p>
-			<form id="twitter_form" action="<?php echo site_url(); ?>api/processform" method="post">
+			<?php }else{ ?>
+			<p class="ok">
+				<!-- <a href="#" class="tik"></a> -->
+				There is a problem, please <a style="color: #333;" href="<?php echo site_url(); ?>welcome/user">try again.</a>
+			</p>
+			<?php } ?>
+
+			<div class="clear"></div>
+
+<!-- 			<div class="favbox">
+				<div class="avatar">
+					<img src="<?php echo site_url(); ?>images/default_user_image.jpg" alt="">
+				</div>
 				<p>
-					<input type="text" placeholder="Twitter username without @" name="twitter_username" />
-					<a href="#" onclick="$('#twitter_form').submit(); return false;">Synchronize</a>
+					önemli olan fikir değil execution mantığı sw’nin doğasıdır... <a href="#">asdasdas</a>  ürünü çıkarın ve iyi sunum yapın! #swesk 
 				</p>
-			</form>
+			
+			<div class="clear"></div>
+			
+			</div>-->
+			
+			<!-- <div class="innershadow"></div> -->
+
 			<div class="clear"></div>
 
 		</section>

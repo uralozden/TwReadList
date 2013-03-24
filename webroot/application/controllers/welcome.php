@@ -22,9 +22,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_v');
 	}
 
-	public function favorites()
+	public function result()
 	{
-		$this->load->view('favorites_v');
+		$this->load->view('result_v');
 	}
 
 	public function user()
