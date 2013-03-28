@@ -7,7 +7,7 @@ class Api extends CI_Controller{
 
 	private $favorite_links = array();
 	private $favorite_tweets = array();
-	private $consumer_key = "12580-e4b58e9df02a1a4aabed660a";
+	private $consumer_key = "/***YOUR API KEY***/";
 	private $request_token = "";
 	private $access_token = "";
 	private $username = "";
